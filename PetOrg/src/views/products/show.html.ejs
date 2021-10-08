@@ -1,0 +1,41 @@
+<div class="show_c">
+
+    <% if (product.photo) { %>
+        <img src="<%= cloudinary.url(product.photo) %>" alt="Foto Product"/>
+    <% } else {%>
+        <img src="<%= assetPath('logo.png') %>" alt="Foto Product"/>
+    <% } %>
+
+    <h1>Producto: <%= product.name %></h1>
+
+    <p>Precio: <%= product.price %></p>
+
+    <p>Cantidad disponible: <%= product.stock %></p>
+
+    <p>Uso: <%= product.used ? 'Usado':'Nuevo'  %></p>
+
+    <p>Descripción: <%= product.description %></p>
+
+        <div class="button_panel">
+            <button>
+                <a class="link" href="<%= productsPath %>">Volver a la lista</a>
+            </button>
+            <% if (locals.currentCoordinator) { %>
+                <button>
+                    <a class="link" href="<%= editProductPath %>">Editar</a>
+                </button>
+                <button>
+                    <a class="link" href="<%= deleteProductPath %>" onclick="return confirm('¿Estás seguro? Se borrará permanentemente.')" >Borrar producto</a>
+                </button>
+            <% } else if (locals.currentUser) { %>
+                <% let productData = JSON.stringify(product) %>
+
+                <input type="hidden" id="productInfo" data-product="<%=productData%>" />
+            <% } else { %>
+                <button>
+                    <a class="link" href="<%= newUserPath %>">Comprar producto</a>
+                </button>
+            <% } %>
+
+        </div>
+</div>

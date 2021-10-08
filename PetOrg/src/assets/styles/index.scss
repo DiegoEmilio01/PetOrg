@@ -1,0 +1,168 @@
+.index_c {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0px;
+  width: 100%;
+  flex: 1;
+  .ind_table{
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 300px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    align-content: center;
+    font-family: "Roboto";
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+    tr:nth-child(even){background-color: #ffffff}
+    th {
+      background-color: #FFB793;
+      color: black;
+      padding: 12px 15px;
+      font-size: 15px;
+      font-weight: bold;
+    } 
+    thead tr {
+      background-color: #009879;
+      color: #ffffff;
+      text-align: left;
+    }
+  }
+  .card_index {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 85%;
+    justify-content: center;
+  }
+  .event_subtitle {
+    margin: 30px 0px 10px 0px;
+  }
+  #PetDisplay {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .Search_Items {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      .Search_Bar{
+        margin: 0 15px;
+        display: flex;
+      }
+      select {
+        height: 25px;
+        margin-left: 10px;
+      }
+
+    }
+  }
+}
+
+.main_c {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 320px;
+  padding: 10px;
+  border: 5px solid #FFB793;
+  margin: auto;
+}
+
+section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 20px;
+  .entity_c {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    .entity {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      margin: 15px;
+      h2 {
+        font-size: 20px;
+      } 
+      .articles_c {
+        position: relative;
+        display: flex;
+        align-items: center;
+        overflow-x: auto;
+        max-width: 85%;
+      }
+    }
+  }
+}
+
+#report_card {
+  min-height: 180px;
+}
+
+.card {
+  min-height: 290px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px;
+  border: 3px solid #FFB793;
+  border-radius: 5px;
+  margin: 15px;
+  h1 {
+    margin: 5px;
+  }
+  h3, h4 {
+    max-width: 120px;
+  }
+  .card_description {
+    box-sizing: border-box;
+    margin: auto 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 120px;
+    p {
+      text-align: left;
+      font-size: 12px;
+      margin: 3px 0px;
+    }
+  }
+  .card_photo {
+    width: 120px;
+    height: 120px;
+    margin: 8px;
+  }
+  .card_footer {
+    display: flex;
+    align-items: center;
+    button {
+      margin: 5px 5px 5px 10px;
+    }
+    .sponsor_icon {
+      text-align: left;
+      width: 25px;
+      height: 25px;
+      margin: 5px 10px 5px 5px;
+      font-size: 8px;
+    }
+  } 
+}
+
+#react-product-cart{
+ width: 100%;
+}

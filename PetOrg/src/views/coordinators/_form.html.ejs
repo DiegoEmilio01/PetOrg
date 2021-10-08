@@ -1,0 +1,37 @@
+<% if (locals.errors) { %>
+<% const translator = { "name": "Nombre", "job": "Cargo", "email": "Email", "password": "Contraseña"}%>
+<div class="errors">
+    <p>Error en ingreso de datos en el formulario:</p>
+    <ul>
+        <% errors.forEach(error => { %>
+            <li><%= translator[error.path] %>: <%= error.message %></li>
+        <% }); %>
+    </ul>
+</div>
+<% } %>
+
+<div class="field">
+    <label for="name">Nombre</label>
+    <input type="text" id="name" name="name" required value="<%= coordinator.name %>"/>
+</div>
+
+<div class="field">
+    <label for="jobId">Cargo</label>
+    <select name="jobId">
+        <% jobs.forEach(job => { %>
+            <option value="<%= job.id %>" <% if (coordinator.jobId === job.id) { %> selected <% } %>><%= job.name %></option>
+        <% }) %>
+    </select>
+</div>
+
+<div class="field">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required value="<%= coordinator.email %>"/>
+</div>
+
+<div class="field">
+    <label for="password">Contraseña</label>
+    <input type="password" id="password" name="password" required value="<%= coordinator.password %>"/>
+</div>
+
+

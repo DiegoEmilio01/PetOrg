@@ -1,0 +1,43 @@
+<div class="show_c">
+  <h1>Perfil</h1>
+  <h2> Nombre: <%= user.name%></h2>
+  <p> Correo: <%= user.email%></p>
+  <p> Dirección: <%= user.adress %></p>
+  <p> Saldo: $<%= user.money %></p>
+
+  <% if (pets.length > 0) { %>
+    <h3>Mascotas Adoptadas:</h3>
+    <% pets.forEach( pet => {%>
+      <div class="flex_sides">
+        <button><a class="link" href=" <%= petPath(pet.id) %>" > <%= pet.name %> </a></button>
+        <button><a class="link" href=" <%= monitoringPath(pet.id) %>" > Seguimiento </a></button>
+      </div>
+    <% })%>
+  <% } %>
+  <% if (sponsorPets.length > 0) { %>
+    <h3>Mascotas Apadrinadas:</h3>
+    <% sponsorPets.forEach( pet => {%>
+        <button><a class="link" href=" <%= petPath(pet.id) %>" > <%= pet.name %> </a></button>
+    <% })%>
+  <% } %>
+  
+  <div class="button_panel">
+    <% if (locals.currentCoordinator) { %>
+      <button>
+        <a class="link" href="<%= usersPath %> ">Volver a la lista</a>
+      </button>
+    <% } %>
+    <button>
+      <a class="link" href="<%= userEditPath %>">Editar</a>
+    </button>
+    <button>
+      <a class="link" href="<%= userDeletePath %> " onclick="return confirm('¿Estás seguro? Se borrará permanentemente.')" >Borrar</a>
+    </button>
+    <button>
+      <a class="link" href="<%= ordersPath %>">Compras</a>
+    </button>
+    <button>
+      <a class="link" href="<%= addMoneyPath %>">Agregar dinero</a>
+    </button>
+  </div>
+</div>

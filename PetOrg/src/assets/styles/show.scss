@@ -1,0 +1,65 @@
+.show_c {
+  box-sizing: border-box;
+  border: 5px solid #FFB793;
+  margin: 30px auto;
+  width: fit-content;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .pet_grid {
+    margin: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    column-gap: 30px;
+    p{
+      min-height: 20px;
+      display: flex;
+      align-items: center;
+      text-align: left;
+      .sponsor_icon {
+        width: 20px;
+        height: 20px;
+        margin: 0px 0px 0px 5px;
+      }
+    }
+  }
+  .button_panel {
+    margin: 10px;
+  }
+  img {
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+  }
+  .reports {
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    li {
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  .news {
+    margin: 30px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    p {
+      font-weight: bold;
+    }
+    ul {
+      margin: 8px 25px;
+      list-style-position: inside;
+    } 
+  }
+}
+
+
+

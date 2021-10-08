@@ -1,0 +1,23 @@
+<div class="login_c">
+    <h1>Login</h1>
+
+    <% if (permission_error) {%>
+        <p>Error: No posees los permisos necesarios. Por favor inicia sesión.</p>
+    <% } %> 
+
+    <div class="button_panel">
+        <button>
+            <a class="link" href="<%= userSessionPath %>">Usuario</a>
+        </button>
+        
+        <button>
+            <a class="link" href="<%= coordinatorSessionPath %>">Coordinador</a>
+        </button>
+    </div>
+
+    <button>
+        <a class="link" href="<%= rootPath %>">Volver a la página principal</a>
+    </button>
+
+
+</div>

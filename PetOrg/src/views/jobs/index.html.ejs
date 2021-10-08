@@ -1,0 +1,32 @@
+<div class="index_c">
+    <h1>Cargos</h1>
+    <div class="button_panel">
+        <button class="button">
+            <a class="link" href="<%= indexPath %>">Lista de acciones</a>
+        </button>
+        <button class="button">
+            <a class="link" href="<%= newJobPath %>">Agregar cargo</a>
+        </button>
+    </div>
+
+    <table class="ind_table">
+        <thead>
+        <tr>
+            <th>Cargo</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% jobs.forEach(job => {%>
+            <tr>
+                <td><%= job.name %></td>
+                <td>
+                    <button class="button">
+                        <a class="link" href="<%= jobPath(job.id) %>">Ver más</a>
+                    </button>
+                </td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+</div>

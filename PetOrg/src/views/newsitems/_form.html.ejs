@@ -1,0 +1,26 @@
+<% if (locals.errors) { %>
+<% const translator = { "name": "Nombre", "job": "Cargo", "email": "Email", "password": "Contraseña"}%>
+<div class="errors">
+    <p>Error en ingreso de datos en el formulario:</p>
+    <ul>
+        <% errors.forEach(error => { %>
+            <li><%= translator[error.path] %>: <%= error.message %></li>
+        <% }); %>
+    </ul>
+</div>
+<% } %>
+
+<div class="field">
+    <label for="title">Título</label>
+    <input type="text" id="title" name="title" required value="<%= newsitem.title %>"/>
+</div>
+<div class = "field">
+    <label for="photo">Foto:</label>
+    <input type="file" id="photo" name="photo">
+</div>
+
+<div class="field">
+    <label for="content">Contenido</label>
+    <textarea rows="3" id="content" name="content" ><%= newsitem.content %></textarea>
+</div>
+

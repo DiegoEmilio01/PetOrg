@@ -1,0 +1,50 @@
+.App {
+  text-align: center;
+  background-color: black;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.Console {
+  width: 600px;
+  height: 400px;
+  color: pink;
+  border-style: solid;
+  border-color: pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Text-Input-Box{
+  border-style: solid none none;
+  padding: 5px;
+  display: flex;
+}
+#InputArea{
+  width: 100%;
+  outline: none;
+  background: none;
+  border:none;
+  color: pink;
+  font-size: inherit;
+  padding-top: 4px;
+  padding-left: 5px;
+}
+.Send-Button{
+
+}
+
+.Text-Display-Box{
+  border-style: solid none none;
+  height: 100%;
+  text-align: left;
+  padding: 5px 10px;
+  overflow: auto;
+}
+
+
+

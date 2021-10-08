@@ -1,0 +1,46 @@
+<div class="show_c">
+    <h1><%= coordinator.name %></h1>
+    <p>Cargo: <%= job.name %></p>
+    <p>Email: <%= coordinator.email %></p>
+
+    <div class="button_panel">
+        <button>
+            <a class="link" href="<%= coordinatorsPath %>">Volver a la lista</a>
+        </button>
+        <button>
+            <a class="link" href="<%= editCoordinatorPath(coordinator.id) %>">Editar</a>
+        </button>
+        <button>
+            <a class="link" href="<%= deleteCoordinatorPath(coordinator.id) %>" onclick="return confirm('¿Estás seguro? Se borrará permanentemente')">Borrar Coordinador</a>
+        </button>
+    </div>
+
+    <div class="news">
+        <h4>Noticias creadas: <%= news.length%></h4>
+        <% if (news.length) {%>
+            <p>Títulos:</p>
+            <ul>
+                <% news.forEach((newitem) => {%>
+                    <li><%= newitem.title %></li>
+                <% }); %>
+            </ul>
+        <% } %>
+    </div>
+
+    <div class="reports">
+        <h4> Reportes cerrados: <%= reports.length%> </h4>
+        <% if (reports.length) { %>
+            <ul>
+                <% reports.forEach(report => { %>
+                    <li>
+                        <h4>Nombre: <%= report.name %></h2>
+                        <p>Fecha: <%= report.date.toString() %></p>
+                        <button>
+                            <a class="link" href="<%= reportPath(report.id) %>"> ver más</a>
+                        </button>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } %>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="index_c">
+  <h1>Eventos</h1>
+
+  <% if (locals.currentCoordinator) { %>
+    <div class="button_panel">
+      <button>
+        <a class="link" href="<%= indexPath %>">Lista de acciones</a>
+      </button>
+      <button>
+        <a class="link" href="<%= newEventPath%>"> Crear evento</a>
+      </button>
+    </div>
+  <% } %>
+  <h3 class="event_subtitle">Eventos asistibles:</h3>
+  <div class="card_index">
+    <% assistable_events.forEach(event => { %>
+      <article class="card">
+        <a class="link" href="<%= eventPath(event.id) %>">
+          <% if (event.photo) { %>
+            <img class="card_photo" src="<%= cloudinary.url(event.photo) %>" alt="Foto Evento"/>
+          <% } else {%>
+            <img class="card_photo" src="<%= assetPath('logo.png') %>" alt="Foto Evento"/>
+          <% } %></a>
+        <a class="link" href="<%= eventPath(event.id) %>"><h3><%= event.name %></h3></a>
+        <div class="card_description">
+            <% let dateMsg = event.date.toString() %>
+            <% if (dateMsg.length > 10) {%>
+                <% dateMsg = event.date.toString().substr(0, event.date.toString().indexOf(' ')) %>
+            <% } %>
+            <p>Fecha: <%= dateMsg %></p>
+            <p>Lugar: <%= event.location %></p>
+        </div>
+        <div class="card_footer">
+          <button>
+            <a class="link" href="<%= eventPath(event.id) %>">Ver más</a>
+          </button>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+  <h3 class="event_subtitle">Eventos no asistibles:</h3>
+  <div class="card_index">
+    <% unassistable_events.forEach(event => { %>
+      <article class="card">
+        <a class="link" href="<%= eventPath(event.id) %>">
+          <% if (event.photo) { %>
+            <img class="card_photo" src="<%= cloudinary.url(event.photo) %>" alt="Foto Evento"/>
+          <% } else {%>
+            <img class="card_photo" src="<%= assetPath('logo.png') %>" alt="Foto Evento"/>
+          <% } %></a>
+        <a class="link" href="<%= eventPath(event.id) %>"><h3><%= event.name %></h3></a>
+        <div class="card_description">
+            <% let dateMsg = event.date.toString() %>
+            <% if (dateMsg.length > 10) {%>
+                <% dateMsg = event.date.toString().substr(0, event.date.toString().indexOf(' ')) %>
+            <% } %>
+            <p>Fecha: <%= dateMsg %></p>
+            <p>Lugar: <%= event.location %></p>
+        </div>
+        <div class="card_footer">
+          <button>
+            <a class="link" href="<%= eventPath(event.id) %>">Ver más</a>
+          </button>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+</div>

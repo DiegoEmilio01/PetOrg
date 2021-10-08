@@ -1,0 +1,72 @@
+<div class="show_c">
+
+    <% if (event.photo) { %>
+        <img src="<%= cloudinary.url(event.photo) %>" alt="Foto Evento"/>
+    <% } else {%>
+        <img src="<%= assetPath('logo.png') %>" alt="Foto Evento"/>
+    <% } %>
+
+    <h2> Nombre: <%= event.name%></h2>
+    
+    <% if (locals.currentCoordinator) { %>    
+        <% if (assistable) { %>
+            <p>¡Evento vigente!</p>
+        <% } else { %>
+            <p>Este evento ya terminó.</p>
+        <% } %>
+    <% } else { %>
+        <% if (!assistance && assistable) { %>
+            <p>¡Inscríbete para asistir!</p>
+        <% } else if (assistance && assistable) { %>
+            <p>¡Te esperamos!</p>
+        <% } else { %>
+            <p>Este evento ya terminó.</p>
+        <% } %>
+    <% } %>
+      
+    <p> Descripción: <%= event.description%></p>
+    <p> Cantidad de asistentes: <%= numberOfAssistants %></p>
+    <p> Dirección: <%= event.location %></p>
+    <% let dateMsg = event.date.toString() %>
+    <% if (dateMsg.length > 10) {%>
+        <% dateMsg = event.date.toString().substr(0, event.date.toString().indexOf(' ')) %>
+    <% } %>
+    <p>Fecha: <%= dateMsg %></p>
+    <p> Hora de inicio: <%= event.start_hour %></p>
+    <p> Hora de término: <%= event.end_hour %></p>
+
+
+    <div class="button_panel">
+        <button>
+            <a class="link" href="<%= eventsPath %> ">Volver a la lista</a>
+        </button>
+
+        <% if (locals.currentUser && !assistance && assistable) { %>
+            <form method="post" action="<%= eventAssistPath %>">
+                <input type="submit" value="Incribirme">
+            </form>
+        <% } %>
+
+        <% if (!locals.currentUser && !locals.currentCoordinator && assistable) { %>
+            <button>
+                <a class="link" href="<%= newUserPath %>">Inscribirme</a>
+            </button>
+        <% } %>
+
+        <% if (locals.currentUser && assistance) { %>
+            <form method="post" action="<%= eventNotAssistPath %>">
+                <input type="submit" value="Desinscribirme">
+            </form>
+        <% } %>
+
+        <% if (locals.currentCoordinator) { %>
+            <button>
+                <a class="link" href="<%= eventEditPath %>">Editar</a>
+            </button>
+
+            <button>
+                <a class="link" href="<%= eventDeletePath %> " onclick="return confirm('¿Estás seguro? Se borrará permanentemente.')" >Borrar</a>
+            </button>
+        <% } %>
+    </div>
+</div>

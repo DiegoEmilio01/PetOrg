@@ -1,0 +1,210 @@
+<% if (!locals.currentCoordinator) { %>
+ 
+<% if (permission_error) {%>
+  <p>Error: No posees los permisos necesarios en esta cuenta.</p>
+<% } %>
+
+<div class="main_c">
+  <h1>Bienvenid@ a PetOrg</h1>
+  <% if (!locals.currentUser) { %>
+    <div class="button_panel">
+      <button>
+        <a class="link" href="<%= newSessionPath %>">Login</a>
+      </button>
+      <button>
+        <a class="link" href="<%= newUserPath %>">Registrarse</a>
+      </button>
+    </div>
+  <% } %>
+</div>
+
+<% } else { %>
+  <section>
+    <% if (permission_error) {%>
+      <p>Error: No posees los permisos necesarios en esta cuenta o estás intentando iniciar sesión sin hacer log out.</p>
+    <% } %> 
+    <h1>Añadidos recientemente</h1>
+    <div class="entity_c">
+      <div class="entity">
+        <a class="link" href="<%= petsPath %>"><h2>Mascotas</h2></a>
+        <div class="articles_c">
+          <% pets.forEach(pet => { %>
+            <article class="card">
+              <% if (pet.photo) { %>
+                <a class="link" href="<%= petPath(pet.id) %>"><img class="card_photo" src="<%= cloudinary.url(pet.photo) %>" alt="Foto Mascota"/></a>
+              <% } else {%>
+                <a class="link" href="<%= petPath(pet.id) %>"><img class="card_photo" src="<%= assetPath('logo.png') %>" alt="Foto Mascota"/></a>
+              <% } %>
+              <a class="link" href="<%= petPath(pet.id) %>"><h3><%= pet.name %></h3></a>
+              <div class="card_description">
+                <p>Sexo: <%= (pet.sex == 'm') ? 'Macho':'Hembra' %></p>
+                <p>Tamaño: <%= pet.size %></p>
+                <p>Tipo: <%= pet.animal.animal %></p>
+              </div>
+              <div class="card_footer">
+                <img class="sponsor_icon" src="<%= pet.can_sponsor ? assetPath('can_sponsor.png'):assetPath('cannot_sponsor.png') %>" alt="<%= pet.can_sponsor ? 'Apadrinable':'No apadrinable' %>">
+                <button>
+                  <a class="link" href="<%= petPath(pet.id) %>">Detalle</a>
+                </button>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+        <button>
+          <a class="link" href="<%= petsPath %>">Ver más</a>
+        </button>
+      </div>
+      <div class="entity">
+        <a class="link" href="<%= productsPath %>"><h2>Productos</h2></a>
+        <div class="articles_c">
+          <% products.forEach(product => { %>
+            <article class="card">
+              <% if (product.photo) { %>
+                <a class="link" href="<%= productPath(product.id) %>"><img class="card_photo" src="<%= cloudinary.url(product.photo) %>" alt="Foto Producto"/></a>
+              <% } else {%>
+                <a class="link" href="<%= productPath(product.id) %>"><img class="card_photo" src="<%= assetPath('logo.png') %>" alt="Foto Producto"/></a>
+              <% } %>
+              <a class="link" href="<%= productPath(product.id) %>"><h3><%= product.name %></h3></a>
+              <div class="card_description">
+                <p>Precio: <%= product.price %></p>
+                <p>Stock: <%= product.stock %></p>
+                <p>Uso: <%= product.used ? 'Usado':'Nuevo'  %></p>
+              </div>
+              <div class="card_footer">
+                <button>
+                  <a class="link" href="<%= productPath(product.id) %>">Detalle</a>
+                </button>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+        <button>
+          <a class="link" href="<%= productsPath %>">Ver más</a>
+        </button>
+      </div>
+      <div class="entity">
+        <a class="link" href="<%= newsitemsPath %>"><h2>Noticias</h2></a>
+        <div class="articles_c">
+          <% newsitems.forEach(newsitem => { %>
+            <article class="card">
+              <% if (newsitem.photo) { %>
+                <a class="link" href="<%= newsitemPath(newsitem.id) %>"><img class="card_photo" src="<%= cloudinary.url(newsitem.photo) %>" alt="Foto Noticia"/></a>
+              <% } else {%>
+                <a class="link" href="<%= newsitemPath(newsitem.id) %>"><img class="card_photo" src="<%= assetPath('logo.png') %>" alt="Foto Noticia"/></a>
+              <% } %>
+              <a class="link" href="<%= newsitemPath(newsitem.id) %>"><h4><%= newsitem.title %></h4></a>
+              <div class="card_description">
+                <% let dateMsg = newsitem.date.toString() %>
+                <% if (dateMsg.length > 10) {%>
+                    <% dateMsg = newsitem.date.toString().substr(0, newsitem.date.toString().indexOf(' ')) %>
+                <% } %>
+                <p>Fecha: <%= dateMsg %></p>
+              </div>
+              <div class="card_footer">
+                <button>
+                  <a class="link" href="<%= newsitemPath(newsitem.id) %>">Detalle</a>
+                </button>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+        <button>
+          <a class="link" href="<%= newsitemsPath %>">Ver más</a>
+        </button>
+      </div>
+      <div class="entity">
+        <a class="link" href="<%= eventsPath %>"><h2>Eventos</h2></a>
+        <div class="articles_c">
+          <% events.forEach(event => { %>
+            <article class="card">
+              <% if (event.photo) { %>
+                <a class="link" href="<%= eventPath(event.id) %>"><img class="card_photo" src="<%= cloudinary.url(event.photo) %>" alt="Foto Evento"/></a>
+              <% } else {%>
+                <a class="link" href="<%= eventPath(event.id) %>"><img class="card_photo" src="<%= assetPath('logo.png') %>" alt="Foto Evento"/></a>
+              <% } %>
+              <a class="link" href="<%= eventPath(event.id) %>"><h3><%= event.name %></h3></a>
+              <div class="card_description">
+                <% let dateMsg = event.date.toString() %>
+                <% if (dateMsg.length > 10) {%>
+                    <% dateMsg = event.date.toString().substr(0, event.date.toString().indexOf(' ')) %>
+                <% } %>
+                <p>Fecha: <%= dateMsg %></p>
+                <p>Lugar: <%= event.location %></p>
+              </div>
+              <div class="card_footer">
+                <button>
+                  <a class="link" href="<%= eventPath(event.id) %>">Detalle</a>
+                </button>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+        <button>
+          <a class="link" href="<%= eventsPath %>">Ver más</a>
+        </button>
+      </div>
+      <div class="entity">
+        <a class="link" href="<%= reportsPath %>"><h2>Reportes</h2></a>
+        <div class="articles_c">
+          <% reports.forEach(report => { %>
+            <article class="card" id="report_card">
+              <a class="link" href="<%= reportPath(report.id) %>"><h4><%= report.name %></h4></a>
+              <div class="card_description">
+                <% let dateMsg = report.date.toString() %>
+                <% if (dateMsg.length > 10) {%>
+                    <% dateMsg = report.date.toString().substr(0, report.date.toString().indexOf(' ')) %>
+                <% } %>
+                <p>Fecha: <%= dateMsg %></p>
+                <p>Lugar: <%= report.location %></p>
+                <p>Estado: <%= (report.is_closed) ? "Cerrado" : "Abierto" %></p>
+              </div>
+              <div class="card_footer">
+                <button>
+                  <a class="link" href="<%= reportPath(report.id) %>">Detalle</a>
+                </button>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+        <button>
+          <a class="link" href="<%= reportsPath %>">Ver más</a>
+        </button>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h1>Añadidos por mí</h1>
+    <div class="entity_c">
+      <div class="entity">
+        <a class="link" href="<%= newsitemsPath %>"><h2>Noticias</h2></a>
+        <div class="articles_c">
+          <% news.forEach(newsitem => { %>
+            <article class="card">
+              <% if (newsitem.photo) { %>
+                <a class="link" href="<%= newsitemPath(newsitem.id) %>"><img class="card_photo" src="<%= cloudinary.url(newsitem.photo) %>" alt="Foto Noticia"/></a>
+              <% } else {%>
+                <a class="link" href="<%= newsitemPath(newsitem.id) %>"><img class="card_photo" src="<%= assetPath('logo.png') %>" alt="Foto Noticia"/></a>
+              <% } %>
+              <a class="link" href="<%= newsitemPath(newsitem.id) %>"><h4><%= newsitem.title %></h4></a>
+              <div class="card_description">
+                <% let dateMsg = newsitem.date.toString() %>
+                <% if (dateMsg.length > 10) {%>
+                    <% dateMsg = newsitem.date.toString().substr(0, newsitem.date.toString().indexOf(' ')) %>
+                <% } %>
+                <p>Fecha: <%= dateMsg %></p>
+              </div>
+              <div class="card_footer">
+                <button>
+                  <a class="link" href="<%= newsitemPath(newsitem.id) %>">Detalle</a>
+                </button>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+        <button>
+          <a class="link" href="<%= newsitemsPath %>">Ver más</a>
+        </button>
+      </div>
+    </div>
+  </section>
+<% } %>

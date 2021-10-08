@@ -1,0 +1,16 @@
+<div class="index_c">
+  <h1>Mascotas</h1>
+  <% if (locals.currentCoordinator) { %>
+      <div class="button_panel">
+        <button>
+          <a class="link" href="<%= indexPath %>">Lista de acciones</a>
+        </button>
+        <button>
+          <a class="link" href="<%= newPetPath %>">Agregar mascota</a>
+        </button>
+      </div>
+  <% } %>
+
+  <div id='PetDisplay'> </div>
+  </table>
+</div>

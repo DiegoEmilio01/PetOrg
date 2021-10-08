@@ -1,0 +1,53 @@
+<div class='monitoring_container'>
+    <div class='monitoring_head'>
+        <div>
+            <p>Mascota:</p> <button><a class="link" href="<%= petPath(pet.id) %>"><%= pet.name %></a> </button>
+        </div>
+        <div>
+            <p>Dueño:</p> <button><a class="link" href="<%= userPath(pet.user.id) %>"><%= pet.user.name %></a></button>
+        </div>
+    </div>
+    <div class='monitoring_tickets_container'>
+        <% monitoring_tickets.forEach(monitoring_ticket => { %>
+            <div class="monitoring_ticket">
+                <div class="monitoring_ticket_info">
+                    <% let dateMsg = monitoring_ticket.date.toString().substr(3,18) %>
+                    <p>Fecha: <%= dateMsg %></p>
+                    
+                    <% if (monitoring_ticket.message) { %>
+                        <p>Mensaje: <%= monitoring_ticket.message %></p>
+                    <% } %>
+                </div>                
+                <div class="monitoring_ticket_photo">
+                    <img src="<%= cloudinary.url(monitoring_ticket.photo) %>" alt="Foto Mascota"/>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+    <% if (locals.currentUser) { %>
+        <div class="monitoring_form">
+            <form method="POST"  enctype="multipart/form-data">
+                <div class="field">
+                    <label for="photo">Sube un foto</label>
+                    <input type="file" id="photo" name="photo" required accept="image/*">
+                </div>
+                <div class="field">
+                    <label for="message">Comentario:</label>
+                    <input name="message" id="message" type="text">
+                </div>
+                <div clas="field">
+                    <% const today = new Date() %>
+                    <% const year = today.getFullYear() %>
+                    <% const month = (today.getMonth() + 1 >= 10) ? today.getMonth() + 1 : '0' + (today.getMonth() + 1) %>
+                    <% const day = (today.getDate() >= 10) ? today.getDate() : '0' + today.getDate() %>
+                    <input type="hidden" id="date" name="date" value="<%= year + '-' + month + '-' + day %>"/>
+                </div>
+                <div class="actions">
+                    <input class="button" type="submit" value="Mandar foto" />
+                </div>
+            </form>
+        </div>
+    <% } %>
+    
+
+</div>

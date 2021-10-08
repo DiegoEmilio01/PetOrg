@@ -1,0 +1,119 @@
+.nav_bar {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  border: 5px solid #FFB793;
+  text-align: left;
+  align-items: center;
+  height: 50px;
+  position: sticky;
+  top: 0px;
+  background-color: white;
+  .header_spacing {
+    width: 30%;
+  }
+  .logo_c {
+    width: 40%;
+    min-width: 100px;
+    height: 50px;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    .logo {
+      width: 50px;
+      height: 50px;
+    }
+    a {
+      height: 50px;
+      display: flex;
+      align-items: center;
+    }
+  }
+  .login {
+    width: 30%;
+    min-width: 100px;
+    height: 50px;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: flex-end;
+    small {
+      display: none;
+    }
+  }
+}
+
+#toggleContainer {
+  align-items: center;
+  display: flex;
+  .clickOut {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+  }
+  #dashboard {
+    position: absolute;
+    top: 50px;
+    //top: 45px;
+    //left: -5px;
+    z-index: 10;
+    display: flex;
+    //display: none;
+    flex-direction: column;
+    width: 120px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 0  0 5px 0;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffd0b8;
+    opacity: 0.9;
+  }
+  #toggle_button {
+    position: absolute;
+    top: 0px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px;
+    color: black;
+  }
+  #toggle_button:hover {background-color: #ffb793;}
+  #carrito_button {
+    position: absolute;
+    top: 0px;
+    left: 40px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px;
+    color: black;
+  }
+  #carrito_button:hover {background-color: #ffb793;}
+}
+
+#fact_display {
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  z-index: 10;
+  width: 10%;
+  #fact_container {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0px;
+    box-sizing: border-box;
+    border-radius: 0  0 5px 0;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffd0b8;
+    opacity: 0.9;
+    p {
+      font-size: 15px;
+    }
+  }
+}

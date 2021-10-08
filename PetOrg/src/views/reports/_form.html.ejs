@@ -1,0 +1,28 @@
+<% if (locals.errors) { %>
+<% const translator = { "name": "Nombre", "location": "Lugar", "description": "Descripción", "is_closed": "Cerrado", "date": "Fecha"}%>
+<div class="errors">
+    <p>Error en ingreso de datos en el formulario:</p>
+    <ul>
+        <% errors.forEach(error => { %>
+            <li><%= translator[error.path] %>: <%= error.message %></li>
+        <% }); %>
+    </ul>
+</div>
+<% } %>
+
+<div class="field">
+    <label for="name">Nombre</label>
+    <input type="text" id="name" name="name" required value="<%= report.name %>"/>
+</div>
+
+<div class="field">
+    <label for="location">Lugar</label>
+    <input type="text" id="location" name="location" required value="<%= report.location %>"/>
+</div>
+
+<div class="field">
+    <label for="description">Descripción</label>
+    <textarea id="description" name="description" cols="30" rows="3" ><%= report.description %></textarea>
+</div>
+
+

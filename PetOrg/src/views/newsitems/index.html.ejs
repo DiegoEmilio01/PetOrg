@@ -1,0 +1,39 @@
+<div class="index_c">
+  <h1>Noticias</h1>
+
+  <% if (locals.currentCoordinator) { %>
+    <div class="button_panel">
+      <button>
+        <a class="link" href="<%= indexPath %>">Lista de acciones</a>
+      </button>
+      <button>
+        <a class="link" href="<%= newNewsitemPath %>">Agregar noticia</a>
+      </button>
+    </div>
+  <% } %>
+
+  <div class="card_index">
+    <% newsitems.forEach(newsitem => { %>
+      <article class="card">
+        <% if (newsitem.photo) { %>
+          <a class="link" href="<%= newsitemPath(newsitem.id) %>"><img class="card_photo" src="<%= cloudinary.url(newsitem.photo) %>" alt="Foto Noticia"/></a>
+        <% } else {%>
+          <a class="link" href="<%= newsitemPath(newsitem.id) %>"><img class="card_photo" src="<%= assetPath('logo.png') %>" alt="Foto Noticia"/></a>
+        <% } %>
+        <a class="link" href="<%= newsitemPath(newsitem.id) %>"><h4><%= newsitem.title %></h4></a>
+        <div class="card_description">
+          <% let dateMsg = newsitem.date.toString() %>
+          <% if (dateMsg.length > 10) {%>
+              <% dateMsg = newsitem.date.toString().substr(0, newsitem.date.toString().indexOf(' ')) %>
+          <% } %>
+          <p>Fecha: <%= dateMsg %></p>
+        </div>
+        <div class="card_footer">
+          <button>
+            <a class="link" href="<%= newsitemPath(newsitem.id) %>">Detalle</a>
+          </button>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+</div>

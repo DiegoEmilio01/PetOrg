@@ -1,0 +1,55 @@
+<div class="show_c">
+    
+    <% if (pet.photo) { %>
+        <img src="<%= cloudinary.url(pet.photo) %>" alt="Foto Mascota"/>
+    <% } else {%>
+        <img src="<%= assetPath('logo.png') %>" alt="Foto Mascota"/>
+    <% } %>
+
+    <h1>Mascota: <%= pet.name %></h1>
+
+    <div class="pet_grid">
+        <p>Edad: <%= pet.age %></p>
+        <p>Tipo: <%= animal.animal %></p>
+        <p>Sexo: <%= (pet.sex == 'm') ? 'Macho':'Hembra' %></p>
+        <p>Tamaño: <%= pet.size %> </p>
+        <% if (pet.can_sponsor) { %>
+            <p>Apadrinable: Sí <img class="sponsor_icon" src="<%= assetPath('can_sponsor.png')  %>"></p>
+        <% } else { %>
+            <p>Apadrinable: No <img class="sponsor_icon" src="<%= assetPath('cannot_sponsor.png')  %>"></p>
+        <% } %>
+        <p>Dueño: <%= (user === null) ? 'No tiene':user.name %></p>
+    </div>
+
+    <p>Descripción: <%= pet.description %></p>
+
+
+    <div class="button_panel">
+        <button>
+            <a class="link" href="<%= petsPath %>">Volver a la lista</a>
+        </button>
+        <% if (locals.currentUser && !pet.userId) { %>
+            <form method="post" action="<%= adoptPetPath %>">
+                <input type="submit" value="Adoptar" onclick="return confirm('¿Estás seguro? Es un gran compromiso.')">
+            </form>
+        <% } %>
+
+        <% if (locals.currentUser && !sponsor && pet.can_sponsor) { %>
+            <button>
+                <a class="link" href="<%= sponsorPath %>">Apadrinar</a>
+            </button>
+        <% } else if (locals.currentUser && sponsor) { %>
+            <button>
+                <a class="link" href="<%= destroySponsorPath %>">Dejar de apadrinar</a>
+            </button>
+        <% } %>
+        <% if (locals.currentCoordinator) { %>
+            <button>
+                <a class="link" href="<%= editPetPath %>">Editar</a>
+            </button>
+            <button>
+                <a class="link" href="<%= deletePetPath %>" onclick="return confirm('¿Estás seguro? Se borrará permanentemente.')" >Borrar mascota</a>
+            </button>
+        <% } %>
+    </div>
+</div>

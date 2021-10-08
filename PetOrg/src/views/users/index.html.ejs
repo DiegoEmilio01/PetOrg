@@ -1,0 +1,33 @@
+<div class="index_c">
+    <h1>Usuarios</h1>
+
+    <div class="button_panel">
+        <button>
+            <a class="link" href="<%= indexPath %>">Lista de acciones</a>
+        </button>
+    </div>
+
+    <table class="ind_table">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% users.forEach( user => {%>
+            <tr>
+                <td> <%= user.name%></td>
+                <td>
+                    <button>
+                        <a class="link" href="<%= userPath(user.id) %>"> Ver más </a>
+                    </button>
+                </td>
+            </tr>
+
+        <% })%>
+        </tbody>
+    </table>
+
+</div>

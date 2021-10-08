@@ -1,0 +1,47 @@
+<% if (locals.errors) { %>
+  <% const translator = { "name": "Nombre", "price": "Precio", "stock": "Stock"}%>
+  <div class="errors">
+    <p>No se pudo crear/guardar el producto debido a los siguientes errores:</p>
+    <ul>
+      <% errors.forEach(error => { %>
+        <li><%= translator[error.path] %>: <%= error.message %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% } %>
+
+<div class="field">
+  <label for="name">Nombre:</label>
+  <input type="text" id="name" name="name" required value="<%= product.name %>" />
+</div>
+<div class="field">
+  <label for="price">Precio:</label>
+  <input type="text" id="price" name="price" required value="<%= product.price %>" />
+</div>
+<div class="field">
+  <label for="stock">Stock disponible:</label>
+  <input type="text" id="stock" name="stock" required value="<%= product.stock %>" />
+</div>
+
+<div class="field">
+  <label for="used">Uso:</label>
+  <select id="used" name="used">
+    <% if (product.used) {%>
+      <option value="true" selected>Usado</option>
+      <option value="false">Nuevo</option>
+    <% } else { %>
+      <option value="true">Usado</option>
+      <option value="false" selected >Nuevo</option>
+    <% } %>
+  </select>
+</div>
+
+<div class = "field">
+  <label for="photo">Foto:</label>
+  <input type="file" id="photo" name="photo">
+</div>
+
+<div class="field">
+  <label for="description">Descripción:</label>
+  <textarea id="description" name="description" cols="30" rows="5" ><%= product.description %></textarea>
+</div>

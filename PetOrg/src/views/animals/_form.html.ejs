@@ -1,0 +1,18 @@
+
+<% if (locals.errors) { %>
+<% const translator = { "animal": "Tipo" }%>
+<div class="errors">
+    <p>Error en ingreso de datos en el formulario:</p>
+    <ul>
+        <% errors.forEach(error => { %>
+            <li><%= translator[error.path] %>: <%= error.message %></li>
+        <% }); %>
+    </ul>
+</div>
+<% } %>
+<div class="field">
+    <label for="animal"> Tipo </label>
+    <input type="text" id="animal" name="animal" required value="<%= animal.animal %>"/>
+</div>
+
+

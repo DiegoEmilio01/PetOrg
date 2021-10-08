@@ -1,0 +1,38 @@
+<div class="index_c">
+    <h1>Animales: <%= animals.length %>%></h1>
+    <div class="button_panel">
+        <button>
+            <a class="link" href="<%= indexPath %>">Lista de acciones</a>
+        </button>
+        <button>
+            <a class="link" href="<%= newAnimalPath %>">Agregar animal</a>
+        </button>
+    </div>
+    
+    <table class="ind_table">
+        <thead>
+        <tr>
+            <th>Raza</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% animals.forEach(animal => {%>
+            <tr>
+                <td><%= animal.animal %></td>
+                <td>
+                    <button>
+                        <a class="link" href="<%= editAnimalPath(animal.id) %>">Editar</a>
+                    </button>
+                </td>
+                <td>
+                    <button>
+                        <a class="link" href="<%= deleteAnimalPath(animal.id) %>" onclick="return confirm('¿Estás seguro? Se borrará permanentemente')">Borrar</a>
+                    </button>
+                </td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+</div>

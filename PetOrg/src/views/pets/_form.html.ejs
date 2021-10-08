@@ -1,0 +1,85 @@
+<% if (locals.errors) { %>
+  <% const translator = { "name": "Nombre", "age": "Edad", "description": "Descripción"}%>
+  <div class="errors">
+    <p>Error en ingreso de datos en el formulario:</p>
+    <ul>
+      <% errors.forEach(error => { %>
+        <li><%= translator[error.path] %>: <%= error.message %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% } %>
+
+<div class="field">
+  <label for="name">Nombre:</label>
+  <input type="text" id="name" name="name" required value="<%= pet.name %>" />
+</div>
+
+<div class="field">
+  <label for="animalId">Tipo:</label>
+  <select name="animalId">
+    <% animals.forEach(animal => { %>
+      <option value="<%= animal.id %>" <% if (pet.animalId === animal.id) { %> selected <% } %>><%= animal.animal %></option>
+    <% }) %>
+  </select>
+</div>
+
+<div class="field">
+  <label for="age">Edad:</label>
+  <input type="text" id="age" name="age" required value="<%= pet.age %>" />
+</div>
+
+<div class="field">
+  <label for="sex">Sexo:</label>
+  <select id="sex" name="sex">
+    <% if (pet.sex == "h") {%>
+      <option value="h" selected>Hembra</option>
+      <option value="m">Macho</option>
+    <% } else { %>
+      <option value="h">Hembra</option>
+      <option value="m" selected >Macho</option>
+    <% } %>
+  </select>
+</div>
+
+<div class="field">
+  <label for="size">Tamaño:</label>
+  <select id="size" name="size">
+    <% if (pet.size == "S") {%>
+      <option value="S" selected>Pequeño</option>
+      <option value="M">Mediano</option>
+      <option value="L">Grande</option>
+    <% } else if (pet.size == "M") { %>
+      <option value="S">Pequeño</option>
+      <option value="M" selected>Mediano</option>
+      <option value="L">Grande</option>
+    <% } else {%>
+      <option value="S">Pequeño</option>
+      <option value="M">Mediano</option>
+      <option value="L" selected>Grande</option>
+    <% } %>
+  </select>
+</div>
+
+<div class="field">
+  <label for="can_sponsor">Apadrinable:</label>
+  <select id="can_sponsor" name="can_sponsor">
+    <% if (pet.can_sponsor) {%>
+      <option value="true" selected>Sí</option>
+      <option value="false">No</option>
+    <% } else { %>
+      <option value="true">Sí</option>
+      <option value="false" selected >No</option>
+    <% } %>
+  </select>
+</div>
+
+<div class = "field">
+  <label for="photo">Foto:</label>
+  <input type="file" id="photo" name="photo">
+</div>
+
+<div class="field">
+  <label for="description">Descripción:</label>
+  <textarea id="description" name="description" cols="30" rows="5" ><%= pet.description %></textarea>
+</div>

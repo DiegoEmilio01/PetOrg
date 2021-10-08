@@ -1,0 +1,31 @@
+<div class="credentials_c">
+    <h1><%= msg %></h1>
+    <form class="form" action="<%= submitPath %>" method="post">
+        <% if (error) { %>
+            <div class="errors">
+                <p>Error en ingreso de datos en el formulario:</p>
+                <ul>
+                    <li><%= error %></li>
+                </ul>
+            </div>
+        <% } %>
+
+        <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required value="<%= %>"/>
+        </div>
+
+        <div class="field">
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" required value="<%=  %>"/>
+        </div>
+
+        <div class="actions">
+            <input class="button" type="submit" value="Login" />
+        </div>
+
+        <button>
+            <a class="link" href="<%= backPath %>">Volver</a>
+        </button>
+    </form>
+</div>

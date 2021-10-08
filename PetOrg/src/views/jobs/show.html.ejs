@@ -1,0 +1,15 @@
+<div class="show_c">
+    <h1><%= job.name %></h1>
+    <p><%= job.description %></p>
+    <div class="button_panel">
+        <button class="button">
+            <a class="link" href="<%= jobPath %>">Lista de cargos</a>
+        </button>
+        <button class="button">
+            <a class="link" href="<%= editJobPath(job.id) %>">Editar</a>
+        </button>
+        <button class="button">
+            <a class="link" href="<%= deleteJobPath(job.id) %>" onclick="return confirm('¿Estás seguro? Se borrará permanentemente')">Borrar cargo</a>
+        </button>
+    </div>
+</div>

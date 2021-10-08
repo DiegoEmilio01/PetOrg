@@ -1,0 +1,50 @@
+<form class="form" method="post" action="<%= actionPath %>" enctype="multipart/form-data">
+    <% if (locals.errors) { %>
+        <% const translator = { "name": "Nombre", "location": "Dirección", "start_hour": "Hora de inicio",
+            "end_hour": "Hora de término", "date": "Fecha", "description": "Descripción"}%>
+        <div class="errors">
+            <p>Error en ingreso de datos en el formulario:</p>
+            <ul>
+                <% errors.forEach((error) => { %>
+                    <li><%= translator[error.path] %>: <%= error.message%></li>
+                <% }); %>
+            </ul>
+        </div>
+    <% } %>
+
+    <div class="field">
+        <label for="name">Nombre</label>
+        <input type="text" id="name" name="name" required value="<%=event.name%>"/>
+    </div>
+    <div class="field">
+        <label for="location">Dirección</label>
+        <input type="text" id="location" name="location" required value="<%=event.location%>"/>
+    </div>
+    <div class="field">
+        <label for="start_hour">Hora de inicio</label>
+        <input type="time" id="start_hour" name="start_hour" value="<%=event.start_hour%>"/>
+    </div>
+    <div class="field">
+        <label for="end_hour">Hora de termino</label>
+        <input type="time" id="end_hour" name="end_hour" value="<%=event.end_hour%>"/>
+    </div>
+    <div class="field">
+        <label for="date">Fecha</label>
+        <input type="date" placeholder="yyyy-mm-dd" id="date" name="date" value="<%=event.date%>"
+            <% if(form === "new"){%>
+                min="<%= currentDate %>" 
+            <% } %> 
+        />
+    </div>
+    <div class = "field">
+        <label for="photo">Foto:</label>
+        <input type="file" id="photo" name="photo">
+    </div>
+    <div class="field">
+        <label for="description">Descripción</label>
+        <textarea id="description" name="description" rows="4" cols="30"><%=event.description%></textarea>
+    </div>
+    <div class="actions">
+    <input type="submit" value="<%= submit_text %> ">
+    </div>
+</form>

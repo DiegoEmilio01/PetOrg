@@ -1,0 +1,47 @@
+<div class="index_c">
+    <h1>Reportes</h1>
+
+    <div class="button_panel">
+        <% if (locals.currentCoordinator) { %>
+            <button>
+                <a class="link" href="<%= indexPath %>">Lista de acciones</a>
+            </button>
+        <% } %>
+        <button>
+            <a class="link" href="<%= newReportPath %>">Agregar Reporte</a>
+        </button>
+    </div>
+
+    <table class="ind_table">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Lugar</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% reports.forEach(report => {%>
+            <tr>
+                <td><%= report.name %></td>
+                <td><%= report.location %></td>
+                <% let closed = (report.is_closed) ? "Cerrado" : "Abierto" %>
+                <td><%= closed %></td>
+                <% let dateMsg = report.date.toString() %>
+                <% if (dateMsg.length > 10) {%>
+                    <% dateMsg = report.date.toString().substr(0, report.date.toString().indexOf(' ')) %>
+                <% } %>
+                <td><%= dateMsg %></td>
+                <td>
+                    <button>
+                        <a class="link" href="<%= reportPath(report.id) %>">Ver más</a>
+                    </button>
+                </td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,14 @@
+<div class="edit_c">
+  <h1>Editar mascota</h1>
+
+  <form class="form" method="post" action="<%= updatePetPath %>" enctype="multipart/form-data">
+    <%- include('_form') %>
+    <div class="actions">
+      <input type="submit" value="Actualizar" />
+    </div>
+  </form>
+
+  <button>
+    <a class="link" href="<%= petPath %>">Volver a la mascota</>
+  </button>
+</div>

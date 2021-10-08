@@ -1,0 +1,28 @@
+<div class="show_c">
+    <% if (newsitem.photo) { %>
+        <img src="<%= cloudinary.url(newsitem.photo) %>" alt="Foto Mascota"/>
+    <% } else {%>
+        <img src="<%= assetPath('logo.png') %>" alt="Foto Mascota"/>
+    <% } %>
+
+    <h1><%= newsitem.title %></h1>
+    <p><%= newsitem.content %></p>
+    <% let dateMsg = newsitem.date.toString() %>
+    <% if (dateMsg.length > 10) { %>
+        <% dateMsg = newsitem.date.toString().substr(0, newsitem.date.toString().indexOf(' ')) %>
+    <% } %>
+    <p><%= dateMsg %></p>
+    <div class="button_panel">
+        <button>
+            <a class="link" href="<%= newsitemsPath %>">Volver a la lista</a>
+        </button>
+        <% if (locals.currentCoordinator) { %>
+            <button>
+                <a class="link" href="<%= editNewsitemPath(newsitem.id) %>">Editar</a>
+            </button>
+            <button>
+                <a class="link" href="<%= deleteNewsitemPath(newsitem.id) %>" onclick="return confirm('¿Estás seguro? Se borrará permanentemente')">Borrar Noticia</a>
+            </button>
+        <% } %>
+    </div>
+</div>

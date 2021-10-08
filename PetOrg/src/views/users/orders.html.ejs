@@ -1,0 +1,35 @@
+<div class="index_c">
+    <h1>Compras</h1>
+
+    <table class="ind_table">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Fecha</th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% products.forEach(product => {%>
+            <tr>
+                <td><%= product.name %></td>
+                <td><%= product.price %></td>
+                <td><%= product.order.amount %></td>
+                <% const date = new Date(product.order.date) %>
+                <% const year = date.getFullYear() %>
+                <% const month = (date.getMonth() + 1 >= 10) ? date.getMonth() + 1 : '0' + (date.getMonth() + 1) %>
+                <% const day = (date.getDate() >= 10) ? date.getDate() : '0' + date.getDate() %>
+                <td><%= year + '-' + month + '-' + day %></td>
+                <td>
+                    <button>
+                        <a class="link" href="<%= productPath(product.id) %>">Ver producto</a>
+                    </button>
+                </td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+</div>

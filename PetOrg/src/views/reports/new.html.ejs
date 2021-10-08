@@ -1,0 +1,21 @@
+<div class="new_c">
+    <h1>Nuevo Reporte</h1>
+
+    <form class="form" method="post" action="<%= createReportPath %>">
+    <%- include('_form') %>
+        <% let dateMsg = report.date %>
+        <div clas="field">
+            <% const today = new Date() %>
+            <% const year = today.getFullYear() %>
+            <% const month = (today.getMonth() + 1 >= 10) ? today.getMonth() + 1 : '0' + (today.getMonth() + 1) %>
+            <% const day = (today.getDate() >= 10) ? today.getDate() : '0' + today.getDate() %>
+            <input type="hidden" id="date" name="date" value="<%= year + '-' + month + '-' + day %>" min="<%= year + '-' + month + '-' + day %>"/>
+        </div>
+
+        <div class="actions">
+            <input type="submit" value="Crear" />
+        </div>
+    </form>
+</div>
+
+

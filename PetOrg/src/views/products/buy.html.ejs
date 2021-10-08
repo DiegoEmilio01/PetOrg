@@ -1,0 +1,64 @@
+<div class="new_c">
+    <h1>Comprar producto</h1>
+
+    <% if (locals.errors) { %>
+        <% const translator = { "stock": "Stock", "amount": "Cantidad", "money": "Saldo" }%>
+        <div class="errors">
+            <p>No se pudo crear/guardar el producto debido a los siguientes errores:</p>
+            <ul>
+                <% errors.forEach(error => { %>
+                    <% if (error.message == 'Debe ser un número entero') { %>
+                        <li>Cantidad: <%= error.message %></li>
+                    <% } else { %>
+                        <li><%= translator[error.path] %>: <%= error.message %></li>
+                    <% } %>
+                <% }); %>
+            </ul>
+        </div>
+    <% } %>
+
+    <% if (product.photo) { %>
+        <img src="<%= cloudinary.url(product.photo) %>" alt="Foto Product"/>
+    <% } else {%>
+        <img src="<%= assetPath('logo.png') %>" alt="Foto Product"/>
+    <% } %>
+
+    <div class="show_c">
+        <h1>Producto: <%= product.name %></h1>
+
+        <p>Precio: <%= product.price %></p>
+
+        <p>Cantidad disponible: <%= product.stock %></p>
+
+        <p>Uso: <%= product.used ? 'Usado':'Nuevo'  %></p>
+
+        <p id="descripcion"><%= product.description %></p>
+        <form class="form" method="post" action="<%= checkoutPath %>">
+            <div class="actions">
+                <h4>Stock disponible: <%= product.stock %></h4>
+                <label for="amount">Cantidad deseada</label>
+                <select name="amount" id="amount" required>
+                    <% stockArray.forEach((stockValue) => {%>
+                        <option value="<%= stockValue %>"><%= stockValue %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <% const today = new Date() %>
+            <% const year = today.getFullYear() %>
+            <% const month = (today.getMonth() + 1 >= 10) ? today.getMonth() + 1 : '0' + (today.getMonth() + 1) %>
+            <% const day = (today.getDate() >= 10) ? today.getDate() : '0' + today.getDate() %>
+            <input type="hidden" id="date" name="date" value="<%= year + '-' + month + '-' + day %>" min="<%= year + '-' + month + '-' + day %>"/>
+            <input type="hidden" id="userId" name="userId" value="<%= locals.currentUser.id %>"/>
+            <input type="hidden" id="productId" name="productId" value="<%= product.id %>"/>
+
+            <div class="actions">
+                <input type="submit" value="Comprar" />
+            </div>
+            <% let productData = JSON.stringify(product) %>
+            <input type="hidden" id="productInfo" data-product="<%=productData%>" />
+            <div id="react-product" />
+        </form>
+    </div>
+
+</div>

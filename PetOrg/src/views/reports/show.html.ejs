@@ -1,0 +1,35 @@
+<div class="show_c">
+  <h1>Reporte: <%= report.name %></h1>
+  <p>Lugar: <%= report.location %></p>
+  <p>Descripción: <%= report.description %></p>
+  <% let closed = (report.is_closed) ? "Cerrado" : "Abierto" %>
+  <p>Estado: <%= closed %></p>
+  <% let dateMsg = report.date.toString() %>
+  <% if (dateMsg.length > 10) {%>
+      <% dateMsg = report.date.toString().substr(0, report.date.toString().indexOf(' ')) %>
+  <% } %>
+  <p>Fecha: <%= dateMsg %></p>
+  <% if (report.is_closed) { %>
+      <% if (locals.currentCoordinator) { %>
+        <h3>Cerrado por: </h3><button><a class="link" href=" <%= coordinatorPath(coordinator.id) %>" > <%= coordinator.name %> </a></button>
+      <% } else { %>
+        <h3>Cerrado por: </h3><p><%= coordinator.name %></p>
+      <% } %>
+  <% } %>
+
+  <div class="button_panel">
+    <button>
+      <a class="link" href="<%= reportsPath %>">Volver a la lista</a><br>
+    </button>
+      <% if (locals.currentCoordinator) { %>
+        <% if (!report.is_closed) { %>
+          <button>
+            <a class="link" href="<%= closeReportPath(report.id) %>">Cerrar reporte</a>
+          </button>
+        <% } %>
+        <button>
+          <a class="link" href="<%= deleteReportPath(report.id)%>" onclick="return confirm('¿Estás seguro? Se borrará permanentemente')">Borrar Reporte</a>
+        </button>
+      <% } %>
+  </div>
+</div>

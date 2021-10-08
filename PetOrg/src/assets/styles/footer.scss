@@ -1,0 +1,12 @@
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid #FFB793;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 50px;
+  i {
+    margin: 3px;
+  }
+}

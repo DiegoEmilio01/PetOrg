@@ -1,0 +1,44 @@
+<% if (locals.currentUser) { %>
+  <div id="react-product-cart" ></div>
+<% } else { %>
+
+
+<div class="index_c">
+  <h1>Productos</h1>
+
+  <% if (locals.currentCoordinator) { %>
+    <div class="button_panel">
+      <button>
+        <a class="link" href="<%= indexPath %>">Lista de acciones</a>
+      </button>
+      <button>
+        <a class="link" href="<%= newProductPath %>">Agregar producto</a>
+      </button>
+    </div>
+  <% } %>
+
+  <div class="card_index">
+    <% products.forEach(product => { %>
+      <article class="card">
+        <a class="link" href="<%= productPath(product.id) %>">
+          <% if (product.photo) { %>
+            <img class="card_photo" src="<%= cloudinary.url(product.photo) %>" alt="Foto Product"/>
+          <% } else {%>
+            <img class="card_photo" src="<%= assetPath('logo.png') %>" alt="Foto Product"/>
+          <% } %></a>
+        <a class="link" href="<%= productPath(product.id) %>"><h3><%= product.name %></h3></a>
+        <div class="card_description">
+          <p>Precio: <%= product.price %></p>
+          <p>Stock: <%= product.stock %></p>
+          <p>Uso: <%= product.used ? 'Usado':'Nuevo'  %></p>
+        </div>
+        <div class="card_footer">
+          <button>
+            <a class="link" href="<%= productPath(product.id) %>">Detalle</a>
+          </button>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+</div>
+<% } %>

@@ -1,0 +1,26 @@
+<div class="new_c">
+    <h1>Nueva noticia</h1>
+
+    <% const dateMsg = newsitem.date %>
+    <form class="form" method="post" action="<%= createNewsitemPath %>" enctype="multipart/form-data">
+    <%- include('_form') %>
+
+        <div class="field">
+            <label for="date">Fecha</label>
+            <input type="date" placeholder="yyyy-mm-dd" id="date" name="date" value="<%= dateMsg %>"/>
+        </div>
+
+        <div class="field">
+            <label for="coordinator">Coordinador</label>
+            <select id="coordinator" name="coordinatorId">
+                <% coordinators.forEach((coordinator) => { %>
+                <option value="<%=coordinator.id%>" <%= coordinator.id === newsitem.coordinatorId ? 'selected' : '' %>><%=coordinator.name%></option>
+                <% }) %>
+            </select>
+        </div>
+
+        <div class="actions">
+            <input type="submit" value="Crear" />
+        </div>
+    </form>
+</div>
